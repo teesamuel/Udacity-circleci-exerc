@@ -11,6 +11,16 @@ commands:
       - run: echo ${CIRCLE_WORKFLOW_ID}
       
 jobs:
+  my_job_fails:
+    docker:
+      - image: circleci/node:13.8.0
+    steps:
+      - run: return 1
+      - run: 
+        name : On Error
+        command : echo "Failure occured!"
+        when : on_fail
+      
   my_job:
     docker:
       - image: circleci/node:13.8.0
@@ -62,3 +72,4 @@ workflows:
           requires:
             - save_hello_world_output
       - my_job
+      - my_job_fails
