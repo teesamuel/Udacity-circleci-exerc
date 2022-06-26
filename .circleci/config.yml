@@ -17,9 +17,9 @@ jobs:
     steps:
       - run: return 1
       - run: 
-        name : On Error
-        command : echo "Failure occured!"
-        when : on_fail
+          name : On Error
+          command : echo "Failure occured!"
+          when : on_fail
       
   my_job:
     docker:
